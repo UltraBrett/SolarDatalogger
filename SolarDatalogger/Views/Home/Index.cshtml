@@ -1,0 +1,166 @@
+﻿@model DataloggerAppV2.Models.DataModel
+
+<head>
+    <title>FGCU Solar Data</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+    <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+</head>
+
+<div>
+    <div class="column top">
+
+        <div><button class="button granularity granularity-selected" id="1" style="margin-top: 150px">1 Minute</button></div>
+        <div><button class="button granularity" id="5">5 Minutes</button></div>
+        <div><button class="button granularity" id="15">15 Minutes</button></div>
+        <div><input type="button" class="button csv" value="CSV Download" onclick="location.href='@Url.Action("CsvDownload", "Home")'" /></div>
+        <ul>
+            <div><div class="oval top" /></div>
+            <div><div class="rectangle" /></div>
+        </ul>
+
+    </div>
+    <div class="column bottom"></div><div class="vertical-line top"></div>
+    <div class="rectangle-text">FGCU Solar Panel Data</div>
+    <div class="vertical-line top-right"></div>
+    <div class="border top" />
+</div>
+
+<div class="from-to from">
+    <div style="float: left">FROM:</div>
+    <p><input type="text" class="datepicker left" id="from-date" placeholder="mm/dd/yyyy" /></p>
+    <p>
+        <select class="time" id="from-time">
+            <option value="0">12:00AM</option>
+            <option value="30">12:30AM</option>
+            <option value="60">1:00AM</option>
+            <option value="90">1:30AM</option>
+            <option value="120">2:00AM</option>
+            <option value="150">2:30AM</option>
+            <option value="180">3:00AM</option>
+            <option value="210">3:30AM</option>
+            <option value="240">4:00AM</option>
+            <option value="270">4:30AM</option>
+            <option value="300">5:00AM</option>
+            <option value="330">5:30AM</option>
+            <option value="360">6:00AM</option>
+            <option value="390">6:30AM</option>
+            <option value="420">7:00AM</option>
+            <option value="450">7:30AM</option>
+            <option value="480">8:00AM</option>
+            <option value="510">8:30AM</option>
+            <option value="540">9:00AM</option>
+            <option value="570">9:30AM</option>
+            <option value="600">10:00AM</option>
+            <option value="630">10:30AM</option>
+            <option value="660">11:00AM</option>
+            <option value="690">11:30AM</option>
+            <option value="720">12:00PM</option>
+            <option value="750">12:30PM</option>
+            <option value="780">1:00PM</option>
+            <option value="810">1:30PM</option>
+            <option value="840">2:00PM</option>
+            <option value="870">2:30PM</option>
+            <option value="900">3:00PM</option>
+            <option value="930">3:30PM</option>
+            <option value="960">4:00PM</option>
+            <option value="990">4:30PM</option>
+            <option value="1020">5:00PM</option>
+            <option value="1050">5:30PM</option>
+            <option value="1080">6:00PM</option>
+            <option value="1110">6:30PM</option>
+            <option value="1140">7:00PM</option>
+            <option value="1170">7:30PM</option>
+            <option value="1200">8:00PM</option>
+            <option value="1230">8:30PM</option>
+            <option value="1260">9:00PM</option>
+            <option value="1290">9:30PM</option>
+            <option value="1320">10:00PM</option>
+            <option value="1350">10:30PM</option>
+            <option value="1380">11:00PM</option>
+            <option value="1410">11:30PM</option>
+        </select>
+    </p>
+    <div><button class="button filter" id="clear">Clear</button></div>
+    <button class="button data data-selected" id="v1" style="margin-top: 26px">Voltage 1</button>
+    <button class="button data" id="v2">Voltage 2</button>
+    <button class="button data" id="v3">Voltage 3</button>
+    <button class="button data" id="temp">Temperature</button>
+</div>
+
+<div class="from-to to">
+    <div class="to">TO:</div>
+    <p><input type="text" class="datepicker right" id="to-date" placeholder="mm/dd/yyyy" /></p>
+    <p class="time to">
+        <select class="time" id="to-time">
+            <option value="0">12:00AM</option>
+            <option value="30">12:30AM</option>
+            <option value="60">1:00AM</option>
+            <option value="90">1:30AM</option>
+            <option value="120">2:00AM</option>
+            <option value="150">2:30AM</option>
+            <option value="180">3:00AM</option>
+            <option value="210">3:30AM</option>
+            <option value="240">4:00AM</option>
+            <option value="270">4:30AM</option>
+            <option value="300">5:00AM</option>
+            <option value="330">5:30AM</option>
+            <option value="360">6:00AM</option>
+            <option value="390">6:30AM</option>
+            <option value="420">7:00AM</option>
+            <option value="450">7:30AM</option>
+            <option value="480">8:00AM</option>
+            <option value="510">8:30AM</option>
+            <option value="540">9:00AM</option>
+            <option value="570">9:30AM</option>
+            <option value="600">10:00AM</option>
+            <option value="630">10:30AM</option>
+            <option value="660">11:00AM</option>
+            <option value="690">11:30AM</option>
+            <option value="720">12:00PM</option>
+            <option value="750">12:30PM</option>
+            <option value="780">1:00PM</option>
+            <option value="810">1:30PM</option>
+            <option value="840">2:00PM</option>
+            <option value="870">2:30PM</option>
+            <option value="900">3:00PM</option>
+            <option value="930">3:30PM</option>
+            <option value="960">4:00PM</option>
+            <option value="990">4:30PM</option>
+            <option value="1020">5:00PM</option>
+            <option value="1050">5:30PM</option>
+            <option value="1080">6:00PM</option>
+            <option value="1110">6:30PM</option>
+            <option value="1140">7:00PM</option>
+            <option value="1170">7:30PM</option>
+            <option value="1200">8:00PM</option>
+            <option value="1230">8:30PM</option>
+            <option value="1260">9:00PM</option>
+            <option value="1290">9:30PM</option>
+            <option value="1320">10:00PM</option>
+            <option value="1350">10:30PM</option>
+            <option value="1380">11:00PM</option>
+            <option value="1410">11:30PM</option>
+        </select>
+    </p>
+    <div><button class="button filter right" id="apply">Apply</button></div>
+</div>
+
+<div class="graph" id="graph">
+
+</div>
+
+<div class="border bottom" />
+<div><div class="oval bottom" /></div>
+<div class="vertical-line bottom-right"></div>
+<div><div class="rectangle bottom" /></div><div class="vertical-line"></div>
+
+@Html.Hidden("DataChangeUrl", "http://localhost:49546/Home/DataChange")
+@Html.Hidden("UpdateChartUrl", "http://localhost:49546/Home/UpdateChart")
+@Html.Hidden("currentData", Model.LoadData)
+@Html.Hidden("currentGranularity", Model.LoadGranularity)
+<script src="@Url.Content("~/Scripts/mainPage.js")"></script>
+<script src="@Url.Content("~/Scripts/graphStyles.js")"></script>

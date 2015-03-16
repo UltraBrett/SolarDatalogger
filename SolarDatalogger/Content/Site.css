@@ -1,0 +1,586 @@
+﻿/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+body {
+    background-color: black;
+    font-size: .85em;
+    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    color: #696969
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+a:active {
+    color: white;
+}
+
+p, ul {
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+header,
+footer,
+nav,
+section {
+    display: block;
+}
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.5em;
+    color: #000;
+}
+
+h1 {
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    padding: 0 0 10px 0;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header, #header {
+    position: relative;
+    margin-bottom: 0px;
+    color: #000;
+    padding: 0;
+}
+
+header h1, #header h1 {
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+    color: #fff;
+    border: none;
+    line-height: 2em;
+    font-size: 32px !important;
+    text-shadow: 1px 1px 2px #111;
+}
+
+#main {
+    padding: 30px 30px 15px 30px;
+    background-color: #fff;
+    border-radius: 4px 0 0 0;
+    -webkit-border-radius: 4px 0 0 0;
+    -moz-border-radius: 4px 0 0 0;
+}
+
+footer, 
+#footer {
+    background-color: #fff;
+    color: #999;
+    padding: 10px 0;
+    text-align: center;
+    line-height: normal;
+    margin: 0 0 30px 0;
+    font-size: .9em;
+    border-radius: 0 0 4px 4px;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#menu {
+    border-bottom: 1px #5C87B2 solid;
+    padding: 0 0 2px;
+    position: relative;
+    margin: 0;
+    text-align: right;
+}
+
+ul#menu li {
+    display: inline;
+    list-style: none;
+}
+
+ul#menu li#greeting {
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+}
+
+ul#menu li a {
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #e8eef4;
+    color: #034af3;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+}
+
+ul#menu li a:hover {
+    background-color: #fff;
+    text-decoration: none;
+}
+
+ul#menu li a:active {
+    background-color: #a6e2a6;
+    text-decoration: none;
+}
+
+ul#menu li.selected a {
+    background-color: #fff;
+    color: #000;
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+input[type="text"], 
+input[type="password"] {
+    border: 1px solid black;
+    padding: 2px;
+    font-size: 1.2em;
+    color: #444;
+    width: 200px;
+}
+
+select {
+    border: 1px solid black;
+    padding: 2px;
+    font-size: 1.2em;
+    color: #444;
+}
+
+input[type="submit"] {
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+/* TABLE
+----------------------------------------------------------*/
+
+table {
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 5px;
+    border: solid 1px #e8eef4;
+}
+
+table th {
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #e8eef4;
+    border: solid 1px #e8eef4;
+}
+
+/* MISC  
+----------------------------------------------------------*/
+.clear {
+    clear: both;
+}
+
+.error {
+    color: Red;
+}
+
+nav, 
+#menucontainer {
+    margin-top: 40px;
+}
+
+div#title {
+    display: block;
+    float: left;
+    text-align: left;
+}
+
+#logindisplay {
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    margin: 10px;
+    color: White;
+}
+
+#logindisplay a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #ff0000;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label, 
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.display-field, 
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+.text-box {
+    width: 30em;
+}
+
+.text-box.multi-line {
+    height: 6.5em;
+}
+
+.tri-state {
+    width: 6em;
+}
+
+/*
+My CSS magic
+*/
+
+.button 
+{
+    outline-width: 0;
+    background: white;
+    width: 150px;
+    height: 65px;
+    cursor: pointer;
+    z-index: 1;
+    margin-bottom: -1px;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    border-color: black;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+}
+
+.button.granularity
+{
+    background: #336433;
+}
+
+.button.granularity-selected
+{
+    background: #52CC29;
+    color: black;
+}
+
+.button.csv
+{
+    background: #59ACFF;
+}
+
+.button.filter
+{
+    height: 39px;
+    width: 121px;
+    margin-top: 10px;
+    color: black;
+    background: #E8BF19;
+    border-radius: 20px;
+}
+
+.button.filter.right{
+    margin-left: -121px;
+    margin-top: 65px;
+}
+
+.button.data
+{
+    height: 40px;
+    width: 275px;
+    margin-top: 10px;
+    background: #336433;
+    border-radius: 50px;
+    line-height: 35px;
+    text-align: center;
+}
+
+.button.data-selected
+{
+    background: #52CC29;
+    color: black;   
+}
+
+.button a:link {text-decoration:none;}
+.button a:visited {text-decoration:none;}
+.button a:hover {text-decoration:none;}
+.button a:active {text-decoration:none;}
+
+.column
+{
+    position: absolute;
+    width: 150px;
+    margin: 20px;
+    border-radius: 75px;
+}
+
+.column.top
+{
+    background: #336433;
+    border-color: #336433;
+    z-index: 3;
+    height: 31%;
+}
+
+.column.bottom
+{
+    top: 20px;
+    bottom: 9px;
+    background: #00007A;
+    z-index: 2;
+}
+
+.border
+{
+    position: absolute;
+    height: 40px;
+    width: 94%;
+    left: 70px;
+    border-radius: 75px;
+}
+
+.border.top
+{
+    top: 20px;
+    background: #336433;
+    z-index: 4;
+}
+
+.border.bottom
+{
+    bottom: 29px;
+    background: #00007A;
+}
+
+.oval 
+{
+    position: relative;
+	width: 400px;
+	height: 200px;
+	background: black;
+	-moz-border-radius: 200px / 100px;
+	-webkit-border-radius: 200px / 100px;
+	border-radius: 220px / 118px;
+	margin-left: 100px;
+	z-index: 10;
+}
+
+.oval.top
+{
+    margin-top: -366px;
+    margin-left: 110px;
+}
+
+.oval.bottom
+{
+    margin-top: -200px;
+}
+
+.rectangle 
+{
+    position: absolute;
+	width: 200px;
+	height: 100px;
+	background: #336433;
+	z-index: 1;
+	margin-top:-200px;
+	margin-left: 100px;
+}
+
+.rectangle.bottom
+{
+    margin-top: -100px; 
+    margin-left: 90px; 
+    background: #00007A;
+}
+
+.vertical-line
+{
+    position: absolute;
+    height: 65px;
+    width: 5px;
+    background: black;
+    margin-left: 24%;
+    z-index: 15;
+}
+
+.vertical-line.bottom-right
+{
+    margin-left: 93%;
+}
+
+.vertical-line.top
+{
+    margin-left: 26%;
+    top:20px;
+}
+
+.vertical-line.top-right
+{
+    margin-left: 90%;
+    top:20px;
+}
+
+.rectangle-text
+{
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    text-align: center;
+    height: 40px;
+    padding: 5px;
+    top: 20px;
+    width: 300px;
+    background: black; 
+    color: #E8BF19;
+    z-index: 15;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.from-to
+{
+    position: absolute;   
+    width: 200px;
+    height: 40px;
+    background: black;
+    color: #E8BF19;
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 120px;
+    display: inline;
+    z-index:100;
+}
+
+.from-to.from
+{
+    left: 250px;
+}
+
+.from-to.to
+{
+    left: 450px;
+}
+
+.datepicker
+{
+    width: 120px !important;
+    margin-top: 20px;
+    font-size: 18px !important;
+    height: 36px;
+}
+
+.to{
+    margin-left: -26px;
+    float: left;
+}
+
+.datepicker.right{
+    margin-top: 51px;
+    margin-left: -36px;
+}
+
+.datepicker.left{
+    margin-top: 51px;
+    margin-left: -65px;
+}
+
+.time
+{
+    width: 121px !important;
+    font-size: 18px !important;
+    height: 35px;
+}
+
+.time.right{
+    margin-left: -20px;
+}
+
+.graph
+{
+    position: absolute;
+    top: 120px;
+    bottom: 120px;
+    right: 80px;
+    left: 565px;
+    font-size: 100px;
+    border: 6px solid #00007A;
+    color: white;
+    z-index: 10000;
+}
