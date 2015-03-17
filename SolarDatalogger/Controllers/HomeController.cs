@@ -24,7 +24,7 @@ namespace SolarDatalogger.Controllers
             model.LoadGranularity = "1";
             model.LoadData = "";
 
-            for (int i = 0; i < 900; i++)
+            for (int i = data.Length - 1; i > data.Length - 901; i--)
             {
                 model.LoadData = (model.LoadData == "")
                 ? data[i].VoltageOne.ToString()
@@ -60,7 +60,7 @@ namespace SolarDatalogger.Controllers
             string cheese = "";
             var data = db.SolarDatas.ToArray();
 
-            for (int i = 0; i < 900; i++)
+            for (int i = data.Length - 1; i > data.Length - 901; i--)
             {
                 switch (dataType)
                 {
@@ -95,27 +95,27 @@ namespace SolarDatalogger.Controllers
         {
             string newValues = "";
             var data = db.SolarDatas.ToArray();
-            for (int i = 0; i < 8; i++)
+            for (int i = data.Length - 1; i > data.Length - 9; i--)
             {
                 switch (dataType)
                 {
                     case "v1":
-                        newValues = (i == 7)
+                        newValues = (i == data.Length - 8)
                         ? newValues + "\"" + data[i].VoltageOne.ToString() + "\""
                         : newValues + "\"" + data[i].VoltageOne.ToString() + "\", ";
                         break;
                     case "v2":
-                        newValues = (i == 7)
+                        newValues = (i == data.Length - 8)
                         ? newValues + "\"" + data[i].VoltageTwo.ToString() + "\""
                         : newValues + "\"" + data[i].VoltageTwo.ToString() + "\", ";
                         break;
                     case "v3":
-                        newValues = (i == 7)
+                        newValues = (i == data.Length - 8)
                         ? newValues + "\"" + data[i].VoltageThree.ToString() + "\""
                         : newValues + "\"" + data[i].VoltageThree.ToString() + "\", ";
                         break;
                     case "temp":
-                        newValues = (i == 7)
+                        newValues = (i == data.Length - 8)
                         ? newValues + "\"" + data[i].Temperature.ToString() + "\""
                         : newValues + "\"" + data[i].Temperature.ToString() + "\", ";
                         break;
@@ -123,6 +123,20 @@ namespace SolarDatalogger.Controllers
             }
 
             return newValues;
+        }
+
+        public void InsertData(int time, float v1, float v2, float v3, float temp)
+        {
+            InsertDataController idc = new InsertDataController();
+            SolarData sd = new SolarData();
+            var t = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            var timeStamp = t.TotalMilliseconds;
+            sd.VoltageOne = v1;
+            sd.VoltageTwo = v2;
+            sd.VoltageThree = v3;
+            sd.Temperature = temp;
+            sd.TimeInserted = time;
+            idc.PostSolarData(sd);
         }
     }
 }

@@ -45,3 +45,11 @@ Temporary Items
 *.pdb
 SolarDatalogger/bin/SolarDatalogger.pdb
 *.suo
+*.nupkg
+*.xml
+*.suo
+SolarDatalogger.v12.suo
+*.dll
+*.pdb
+*.cache
+*.sql
