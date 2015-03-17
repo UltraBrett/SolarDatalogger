@@ -39,10 +39,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -112,10 +118,29 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SolarDatasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Models\SolarData.cs">
+      <DependentUpon>SolarPanelData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SolarPanelData.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SolarPanelData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SolarPanelData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SolarPanelData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SolarPanelData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SolarPanelData.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +152,23 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\SolarPanelData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SolarPanelData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SolarPanelData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SolarPanelData.edmx</DependentUpon>
+      <LastGenOutput>SolarPanelData.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SolarPanelData.edmx.diagram">
+      <DependentUpon>SolarPanelData.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\SolarPanelData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SolarPanelData.edmx</DependentUpon>
+      <LastGenOutput>SolarPanelData.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\graphStyles.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -154,6 +196,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\SolarDatas\Create.cshtml" />
+    <Content Include="Views\SolarDatas\Delete.cshtml" />
+    <Content Include="Views\SolarDatas\Details.cshtml" />
+    <Content Include="Views\SolarDatas\Edit.cshtml" />
+    <Content Include="Views\SolarDatas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -164,6 +211,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

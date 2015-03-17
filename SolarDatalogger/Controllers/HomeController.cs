@@ -2,28 +2,33 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using DataloggerAppV2.Models;
+using System.Web;
+using System.Data.Entity;
+using SolarDatalogger.Models;
 using Newtonsoft.Json;
 using System.Text;
 using System.IO;
 
-namespace DataloggerAppV2.Controllers
+namespace SolarDatalogger.Controllers
 {
     public class HomeController : Controller
     {
+
+        private SolarPanelDataEntities db = new SolarPanelDataEntities();
+
         public ActionResult Index()
         {
             var model = new DataModel();
+            var data = db.SolarDatas.ToArray();
             model.LoadGranularity = "1";
             model.LoadData = "";
 
             for (int i = 0; i < 900; i++)
             {
                 model.LoadData = (model.LoadData == "")
-                ? RandomNumberBetween(1, 10).ToString()
-                : RandomNumberBetween(1, 10).ToString() + "," + model.LoadData;
+                ? data[i].VoltageOne.ToString()
+                : data[i].VoltageOne.ToString() + "," + model.LoadData;
             }
             return View(model);
         }

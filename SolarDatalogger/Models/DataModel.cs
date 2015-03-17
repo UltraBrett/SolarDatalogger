@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
 
-namespace DataloggerAppV2.Models
+namespace SolarDatalogger.Models
 {
     public class DataModel
     {
