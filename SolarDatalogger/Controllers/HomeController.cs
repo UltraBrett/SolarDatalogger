@@ -19,7 +19,7 @@ namespace SolarDatalogger.Controllers
 
         public ActionResult Index()
         {
-            var model = new DataModel();
+            var model = new PageLoadModel();
             var data = db.SolarDatas.ToArray();
             model.LoadGranularity = "1";
             model.LoadData = "";
@@ -35,19 +35,15 @@ namespace SolarDatalogger.Controllers
 
         public ActionResult CsvDownload()
         {
-            DataModel model = new DataModel();
+            var data = db.SolarDatas.ToArray();
             var csv = new StringBuilder();
-            //stub string for testing
-            var testString = "{\"tm\":\"0\",\"v1\":\"0\",\"v2\":\"0\",\"v3\":\"0\",\"tc\":\"0\"}";
 
             csv.Append(string.Format("Timestamp,Voltage 1,Voltage 2,Voltage 3,Temperature{0}", Environment.NewLine));
 
             for (int i = 0; i < 900; i++)
-            {
-                model = JsonConvert.DeserializeObject<DataModel>(testString);
-
-                var newLine = string.Format("{0},{1},{2},{3},{4}{5}", model.Timestamp, model.VoltageOne,
-                model.VoltageTwo, model.VoltageThree, model.Temperature, Environment.NewLine);
+            {       
+                var newLine = string.Format("{0},{1},{2},{3},{4}{5}", data[i].Id, data[i].VoltageOne,
+                data[i].VoltageTwo, data[i].VoltageThree, data[i].Temperature, Environment.NewLine);
                 csv.Append(newLine);
             }
 
@@ -62,34 +58,71 @@ namespace SolarDatalogger.Controllers
         public string DataChange(string dataType)
         {
             string cheese = "";
+            var data = db.SolarDatas.ToArray();
 
             for (int i = 0; i < 900; i++)
             {
-                cheese = (cheese == "")
-                ? RandomNumberBetween(1, 10).ToString()
-                : RandomNumberBetween(1, 10).ToString() + "," + cheese;
+                switch (dataType)
+                {
+                    case "v1":
+                        cheese = (cheese == "")
+                        ? data[i].VoltageOne.ToString()
+                        : data[i].VoltageOne.ToString() + "," + cheese;
+                        break;
+                    case "v2":
+                        cheese = (cheese == "")
+                        ? data[i].VoltageTwo.ToString()
+                        : data[i].VoltageTwo.ToString() + "," + cheese;
+                        break;
+                    case "v3":
+                        cheese = (cheese == "")
+                        ? data[i].VoltageThree.ToString()
+                        : data[i].VoltageThree.ToString() + "," + cheese;
+                        break;
+                    case "temp":
+                        cheese = (cheese == "")
+                        ? data[i].Temperature.ToString()
+                        : data[i].Temperature.ToString() + "," + cheese;
+                        break;
+                }
+                
             }
 
             return cheese;
         }
-        public string UpdateChart(string data)
+
+        public string UpdateChart(string dataType)
         {
             string newValues = "";
+            var data = db.SolarDatas.ToArray();
             for (int i = 0; i < 8; i++)
             {
-                newValues = (i == 7) ? newValues + "\"" + RandomNumberBetween(1, 10).ToString() + "\""
-                    : newValues + "\"" + RandomNumberBetween(1, 10).ToString() + "\", ";
+                switch (dataType)
+                {
+                    case "v1":
+                        newValues = (i == 7)
+                        ? newValues + "\"" + data[i].VoltageOne.ToString() + "\""
+                        : newValues + "\"" + data[i].VoltageOne.ToString() + "\", ";
+                        break;
+                    case "v2":
+                        newValues = (i == 7)
+                        ? newValues + "\"" + data[i].VoltageTwo.ToString() + "\""
+                        : newValues + "\"" + data[i].VoltageTwo.ToString() + "\", ";
+                        break;
+                    case "v3":
+                        newValues = (i == 7)
+                        ? newValues + "\"" + data[i].VoltageThree.ToString() + "\""
+                        : newValues + "\"" + data[i].VoltageThree.ToString() + "\", ";
+                        break;
+                    case "temp":
+                        newValues = (i == 7)
+                        ? newValues + "\"" + data[i].Temperature.ToString() + "\""
+                        : newValues + "\"" + data[i].Temperature.ToString() + "\", ";
+                        break;
+                }
             }
 
             return newValues;
-        }
-
-        //stub for testing. Creates a random number within the given range.
-        public Random random = new Random();
-        public double RandomNumberBetween(double minValue, double maxValue)
-        {
-            var next = random.NextDouble();
-            return minValue + (next * (maxValue - minValue));
         }
     }
 }

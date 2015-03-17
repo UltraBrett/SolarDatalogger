@@ -4,7 +4,7 @@ var currentData = $('#currentData').val();
 var currentGranularity = $('#currentGranularity').val();
 var update = 0;
 var updateData = "";
-var currentType = "v1";
+var currentType;
 var title = "Voltage 1";
 
 var secondDate = (new Date()).getTime();
@@ -16,6 +16,7 @@ function timeRangeFinder(timeOne, timeTwo) {
 }
 
 $(document).ready(function () {
+    currentType = "v1";
     getNewData();
 });
 
@@ -26,7 +27,7 @@ setInterval(function () {
 function getNewData() {
     $.ajax({
         type: "GET",
-        data: { data: currentType },
+        data: { dataType: currentType },
         url: $('#UpdateChartUrl').val(),
         async: false,
         success: function (result) {

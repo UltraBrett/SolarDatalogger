@@ -122,7 +122,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Models\PageLoadModel.cs" />
     <Compile Include="Models\SolarData.cs">
       <DependentUpon>SolarPanelData.tt</DependentUpon>
     </Compile>
