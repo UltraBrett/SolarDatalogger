@@ -132,6 +132,8 @@ $(".data").click(function () {
         url: $('#DataChangeUrl').val(),
         success: function (result) {
             currentData = result;
+            update = 0;
+            getNewData();
             graphMaker(JSON.parse("[" + currentData + "]"));
         }
     });
