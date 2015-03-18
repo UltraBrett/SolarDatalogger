@@ -95,7 +95,7 @@ namespace SolarDatalogger.Controllers
         {
             string newValues = "";
             var data = db.SolarDatas.ToArray();
-            for (int i = data.Length - 9; i > data.Length - 8; i--)
+            for (int i = data.Length - 9; i < data.Length - 1; i++)
             {
                 switch (dataType)
                 {
