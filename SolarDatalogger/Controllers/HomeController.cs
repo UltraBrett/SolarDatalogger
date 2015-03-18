@@ -47,10 +47,10 @@ namespace SolarDatalogger.Controllers
                 csv.Append(newLine);
             }
 
-            System.IO.File.WriteAllText("d:/SolarPanelData.csv", csv.ToString());
-            FileInfo exportFile = new FileInfo("d:/SolarPanelData.csv"); //for local
-            //System.IO.File.WriteAllText("C:/inetpub/wwwroot/fgcusolar/Datalogger/SolarPanelData.csv", csv.ToString());
-            //FileInfo exportFile = new FileInfo("C:/inetpub/wwwroot/fgcusolar/Datalogger/SolarPanelData.csv"); //for rock
+            //System.IO.File.WriteAllText("d:/SolarPanelData.csv", csv.ToString());
+            //FileInfo exportFile = new FileInfo("d:/SolarPanelData.csv"); //for local
+            System.IO.File.WriteAllText("C:/inetpub/wwwroot/fgcusolar/Datalogger/SolarPanelData.csv", csv.ToString());
+            FileInfo exportFile = new FileInfo("C:/inetpub/wwwroot/fgcusolar/Datalogger/SolarPanelData.csv"); //for rock
 
             return File(exportFile.FullName, "text/csv", string.Format("SolarPanelData.csv"));
         }
@@ -95,27 +95,27 @@ namespace SolarDatalogger.Controllers
         {
             string newValues = "";
             var data = db.SolarDatas.ToArray();
-            for (int i = data.Length - 1; i > data.Length - 9; i--)
+            for (int i = data.Length - 9; i > data.Length - 8; i--)
             {
                 switch (dataType)
                 {
                     case "v1":
-                        newValues = (i == data.Length - 8)
+                        newValues = (i == data.Length - 2)
                         ? newValues + "\"" + data[i].VoltageOne.ToString() + "\""
                         : newValues + "\"" + data[i].VoltageOne.ToString() + "\", ";
                         break;
                     case "v2":
-                        newValues = (i == data.Length - 8)
+                        newValues = (i == data.Length - 2)
                         ? newValues + "\"" + data[i].VoltageTwo.ToString() + "\""
                         : newValues + "\"" + data[i].VoltageTwo.ToString() + "\", ";
                         break;
                     case "v3":
-                        newValues = (i == data.Length - 8)
+                        newValues = (i == data.Length - 2)
                         ? newValues + "\"" + data[i].VoltageThree.ToString() + "\""
                         : newValues + "\"" + data[i].VoltageThree.ToString() + "\", ";
                         break;
                     case "temp":
-                        newValues = (i == data.Length - 8)
+                        newValues = (i == data.Length - 2)
                         ? newValues + "\"" + data[i].Temperature.ToString() + "\""
                         : newValues + "\"" + data[i].Temperature.ToString() + "\", ";
                         break;

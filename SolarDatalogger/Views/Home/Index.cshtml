@@ -158,6 +158,11 @@
 <div class="vertical-line bottom-right"></div>
 <div><div class="rectangle bottom" /></div><div class="vertical-line"></div>
 
+<!-- 
+    local: http://localhost:49546/Home/DataChange 
+    rock: http://solar.fgcu.edu/datalogger/Home/UpdateChart
+-->
+
 @Html.Hidden("DataChangeUrl", "http://localhost:49546/Home/DataChange")
 @Html.Hidden("UpdateChartUrl", "http://localhost:49546/Home/UpdateChart")
 @Html.Hidden("currentData", Model.LoadData)
