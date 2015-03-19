@@ -92,10 +92,9 @@ function graphMaker() {
             series: [{
                 data: (function () {
                     var data = [], time = (new Date()).getTime(), i,
-                     ourData = JSON.parse("[" + currentData + "]"), j = 0,
-                        timeRange = timeRangeFinder(firstDate, secondDate);
+                     ourData = JSON.parse("[" + currentData + "]"), j = 0;
 
-                    for (i = (timeRange * -1) ; i < 0; i += 1) {
+                    for (i = (ourData.length * -1) ; i < 0; i += 1) {
                         data.push([
                             time + i * 1000,
                             ourData[j]
@@ -175,17 +174,17 @@ $("#apply").click(function () {
         alert("Field cannot be empty.");
     }
     else {
-        firstDate = fromTime / 1000;
-        secondDate = toTime / 1000;
+        firstDate = (fromTime / 1000) + 14400;
+        secondDate = toTime / 1000 + 14400;
         flag = 1;
         $.ajax({
             type: "POST",
             data: {
                 fromTime: firstDate,
                 toTime: secondDate,
-                data: currentType
+                dataType: currentType
             },
-            url: $('#DataChangeUrl').val(),
+            url: $('#DataRangeUrl').val(),
             async: false,
             success: function (result) {
                 currentData = result;

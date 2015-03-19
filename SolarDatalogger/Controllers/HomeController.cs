@@ -16,6 +16,7 @@ namespace SolarDatalogger.Controllers
     {
 
         private SolarPanelDataEntities db = new SolarPanelDataEntities();
+        private InsertDataController idc = new InsertDataController();
 
         public ActionResult Index()
         {
@@ -125,9 +126,44 @@ namespace SolarDatalogger.Controllers
             return newValues;
         }
 
-        public void InsertData(int time, float v1, float v2, float v3, float temp)
+        public string DataRange(string dataType, int fromTime, int toTime)
         {
-            InsertDataController idc = new InsertDataController();
+            string cheese = "";
+            using (var ent = new SolarPanelDataEntities())
+            {
+                var dataRange = ent.SolarDatas.SqlQuery("select * from SolarData where TimeInserted between " + fromTime + " and " + toTime).ToArray<SolarData>();
+                foreach (var val in dataRange)
+                {
+                    switch (dataType)
+                    {
+                        case "v1":
+                            cheese = (cheese == "")
+                            ? val.VoltageOne.ToString()
+                            : cheese + "," + val.VoltageOne.ToString();
+                            break;
+                        case "v2":
+                            cheese = (cheese == "")
+                            ? val.VoltageTwo.ToString()
+                            : cheese + "," + val.VoltageTwo.ToString();
+                            break;
+                        case "v3":
+                            cheese = (cheese == "")
+                            ? val.VoltageThree.ToString()
+                            : cheese + "," + val.VoltageThree.ToString();
+                            break;
+                        case "temp":
+                            cheese = (cheese == "")
+                            ? val.Temperature.ToString()
+                            : cheese + "," + val.Temperature.ToString();
+                            break;
+                    }
+                }
+            }
+            return cheese;
+        }
+
+        public void InsertData(int time, float v1, float v2, float v3, float temp)
+        {   
             SolarData sd = new SolarData();
             var t = DateTime.UtcNow - new DateTime(1970, 1, 1);
             var timeStamp = t.TotalMilliseconds;
