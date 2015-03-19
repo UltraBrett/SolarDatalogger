@@ -1,6 +1,4 @@
-﻿
-
-var currentData = $('#currentData').val();
+﻿var currentData = $('#currentData').val();
 var currentGranularity = $('#currentGranularity').val();
 var update = 0;
 var updateData = "";
@@ -146,6 +144,10 @@ $("#clear").click(function () {
     document.getElementById("to-time").value = "";
 });
 
+function csvDownload() {
+    location.href = 'CsvDownload?fromTime=' + firstDate + '&toTime=' + secondDate;
+}
+
 function toTimestamp(str) {
     var s = str.split("/");
     if (s.length > 1) return (new Date(Date.UTC(s[2], (s[0] * 1 - 1), s[1], 0, 0, 0)).getTime());
@@ -187,6 +189,8 @@ $("#apply").click(function () {
             url: $('#DataRangeUrl').val(),
             async: false,
             success: function (result) {
+                document.getElementById("csv").removeAttribute("class");
+                document.getElementById("csv").setAttribute("class", "button csv-clickable");
                 currentData = result;
                 graphMaker();
             }

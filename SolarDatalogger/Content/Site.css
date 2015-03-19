@@ -340,7 +340,14 @@ My CSS magic
     color: black;
 }
 
-.button.csv
+.button.csv-unclickable
+{
+    background: #1D3752;
+    cursor: default;
+    pointer-events: none;
+}
+
+.button.csv-clickable
 {
     background: #59ACFF;
 }

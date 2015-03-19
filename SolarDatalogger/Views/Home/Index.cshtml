@@ -16,7 +16,7 @@
         <div><button class="button granularity granularity-selected" id="1" style="margin-top: 150px">1 Minute</button></div>
         <div><button class="button granularity" id="5">5 Minutes</button></div>
         <div><button class="button granularity" id="15">15 Minutes</button></div>
-        <div><input type="button" class="button csv" value="CSV Download" onclick="location.href='@Url.Action("CsvDownload", "Home")'" /></div>
+        <div><input type="button" id="csv" class="button csv-unclickable" value="CSV Download" onclick="csvDownload()" /></div>
         <ul>
             <div><div class="oval top" /></div>
             <div><div class="rectangle" /></div>
@@ -168,5 +168,7 @@
 @Html.Hidden("UpdateChartUrl", "http://localhost:49546/Home/UpdateChart")
 @Html.Hidden("currentData", Model.LoadData)
 @Html.Hidden("currentGranularity", Model.LoadGranularity)
+@Html.Hidden("toTime")
+@Html.Hidden("fromTime")
 <script src="@Url.Content("~/Scripts/mainPage.js")"></script>
 <script src="@Url.Content("~/Scripts/graphStyles.js")"></script>

@@ -34,24 +34,25 @@ namespace SolarDatalogger.Controllers
             return View(model);
         }
 
-        public ActionResult CsvDownload()
+        public ActionResult CsvDownload(int fromTime, int toTime)
         {
-            var data = db.SolarDatas.ToArray();
             var csv = new StringBuilder();
 
             csv.Append(string.Format("Timestamp,Voltage 1,Voltage 2,Voltage 3,Temperature{0}", Environment.NewLine));
 
-            for (int i = 0; i < 900; i++)
-            {       
-                var newLine = string.Format("{0},{1},{2},{3},{4}{5}", data[i].Id, data[i].VoltageOne,
-                data[i].VoltageTwo, data[i].VoltageThree, data[i].Temperature, Environment.NewLine);
-                csv.Append(newLine);
+            using (var ent = new SolarPanelDataEntities())
+            {
+                var dataRange = ent.SolarDatas.SqlQuery("select * from SolarData where TimeInserted between " + fromTime + " and " + toTime).ToArray<SolarData>();
+                foreach (var val in dataRange)
+                {
+                    var newLine = string.Format("{0},{1},{2},{3},{4}{5}", val.TimeInserted, val.VoltageOne,
+                    val.VoltageTwo, val.VoltageThree, val.Temperature, Environment.NewLine);
+                    csv.Append(newLine);
+                }
             }
 
-            //System.IO.File.WriteAllText("d:/SolarPanelData.csv", csv.ToString());
-            //FileInfo exportFile = new FileInfo("d:/SolarPanelData.csv"); //for local
-            System.IO.File.WriteAllText("C:/inetpub/wwwroot/fgcusolar/Datalogger/SolarPanelData.csv", csv.ToString());
-            FileInfo exportFile = new FileInfo("C:/inetpub/wwwroot/fgcusolar/Datalogger/SolarPanelData.csv"); //for rock
+            System.IO.File.WriteAllText("d:/SolarPanelData.csv", csv.ToString());
+            FileInfo exportFile = new FileInfo("d:/SolarPanelData.csv"); //for local
 
             return File(exportFile.FullName, "text/csv", string.Format("SolarPanelData.csv"));
         }
